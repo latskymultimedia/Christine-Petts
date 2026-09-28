@@ -44,28 +44,31 @@
             position: relative;
         }
 
-        /* Hero Artist Header with Photo at Top */
+        /* Hero Artist Header with Full-Width Banner Image */
         .artist-header {
             text-align: center;
             margin-bottom: 1.25rem;
         }
 
-        .artist-avatar-wrapper {
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 0.85rem;
-            border-radius: 50%;
-            padding: 3px;
-            background: linear-gradient(135deg, var(--accent), #F59E0B);
-            box-shadow: 0 10px 25px rgba(225, 29, 72, 0.35);
+        .artist-banner-wrapper {
+            width: 100%;
+            height: 180px;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
         }
 
-        .artist-avatar {
+        .artist-banner-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid var(--bg-color);
+            filter: brightness(0.9);
+            transition: transform 0.4s ease;
+        }
+        .artist-banner-wrapper:hover .artist-banner-img {
+            transform: scale(1.04);
         }
 
         .artist-header h1 {
@@ -173,19 +176,26 @@
             box-shadow: 0 12px 30px rgba(0,0,0,0.5);
         }
 
-        .grid-card.full-width {
-            grid-column: span 2;
-        }
-
-        /* Spotify Vibe Card Styling */
-        .grid-card.spotify-card {
+        /* Streaming Music Vibe Card Styling */
+        .grid-card.streaming-card {
             background: linear-gradient(135deg, rgba(29, 185, 84, 0.15), rgba(15, 23, 42, 0.6));
             border-color: rgba(29, 185, 84, 0.3);
         }
-        .grid-card.spotify-card:hover {
+        .grid-card.streaming-card:hover {
             border-color: var(--spotify-green);
             background: linear-gradient(135deg, rgba(29, 185, 84, 0.25), rgba(15, 23, 42, 0.8));
             box-shadow: 0 12px 30px rgba(29, 185, 84, 0.25);
+        }
+
+        /* Music Videos Card Styling */
+        .grid-card.videos-card {
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.15), rgba(15, 23, 42, 0.6));
+            border-color: rgba(225, 29, 72, 0.3);
+        }
+        .grid-card.videos-card:hover {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.25), rgba(15, 23, 42, 0.8));
+            box-shadow: 0 12px 30px var(--accent-glow);
         }
 
         .card-icon {
@@ -258,10 +268,10 @@
 <body>
 
     <div class="widget-container">
-        <!-- Hero Artist Header: Photo at top, Name, Subtitle -->
+        <!-- Hero Artist Header: Full-Width Banner Photo, Name, Subtitle -->
         <div class="artist-header">
-            <div class="artist-avatar-wrapper">
-                <img src="profile.jpg" class="artist-avatar" alt="Christine Petts">
+            <div class="artist-banner-wrapper">
+                <img src="profile.jpg" class="artist-banner-img" alt="Christine Petts">
             </div>
             <h1>Christine Petts</h1>
             <div class="artist-subtitle">Live Acoustic & Vocalist</div>
@@ -284,11 +294,11 @@
 
         <!-- Other Elements: 2 per row grid layout -->
         <div class="section-grid-2col">
-            <!-- Spotify Vibe Card -->
-            <div class="grid-card spotify-card" onclick="openModal('spotify')">
+            <!-- Streaming Music Vibe Card -->
+            <div class="grid-card streaming-card" onclick="openModal('streaming')">
                 <div>
                     <div class="card-icon">🎧</div>
-                    <h3>Spotify & Audio</h3>
+                    <h3>Streaming Music</h3>
                     <p>Stream "Magic Mountain" & covers</p>
                 </div>
             </div>
@@ -302,12 +312,12 @@
                 </div>
             </div>
 
-            <!-- Stats & Proof Card -->
-            <div class="grid-card" onclick="openModal('stats')">
+            <!-- Music Videos Card (Replaced Venue Stats) -->
+            <div class="grid-card videos-card" onclick="openModal('videos')">
                 <div>
-                    <div class="card-icon">⭐</div>
-                    <h3>Venue Stats</h3>
-                    <p>High patron retention & packed rooms</p>
+                    <div class="card-icon">🎬</div>
+                    <h3>Music Videos</h3>
+                    <p>Official releases & live session clips</p>
                 </div>
             </div>
 
@@ -363,8 +373,8 @@
                     <label style="font-size:0.8rem; color:var(--text-muted);">Notes / Set Length:</label>
                     <textarea id="bookNotes" rows="2" placeholder="Indoor/outdoor, set duration..."></textarea>
                 `;
-            } else if(type === 'spotify') {
-                title.innerText = "Spotify & Streaming Vibe";
+            } else if(type === 'streaming') {
+                title.innerText = "Streaming Music Vibe";
                 body.innerHTML = `
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.2rem;">Listen to Christine's latest releases, singles, and acoustic sessions directly:</p>
                     <a href="https://open.spotify.com" target="_blank" class="social-link-btn" style="background:#1DB954; color:#000;">🟢 Play on Spotify</a>
@@ -381,13 +391,14 @@
                     </p>
                 `;
                 submitBtn.style.display = "none";
-            } else if(type === 'stats') {
-                title.innerText = "Venue Track Record & Proof";
+            } else if(type === 'videos') {
+                title.innerText = "Music Videos & Visuals";
                 body.innerHTML = `
                     <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">
-                    • <strong>Audience Retention:</strong> Keeps patrons seated, engaged, and ordering longer at bars and restaurants.<br><br>
-                    • <strong>Built-In Promotion:</strong> Every booked gig is cross-promoted across her active social media channels.<br><br>
-                    • <strong>Experience:</strong> 10+ years of professional live performance reliability.
+                    Explore official visual releases and live session highlights:<br><br>
+                    • <strong>"Magic Mountain"</strong> – Official Single Release<br>
+                    • <strong>Acoustic Covers</strong> – "Sugar Man" & "Comfortably Numb" live session cuts.<br><br>
+                    High-definition production captured by Latsky Multimedia.
                     </p>
                 `;
                 submitBtn.style.display = "none";
@@ -415,19 +426,6 @@
             window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
             closeModal();
         }
-
-        // Welcome Popup on load
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                const modal = document.getElementById('actionModal');
-                document.getElementById('modalTitle').innerText = "✨ Welcome to Christine's Hub!";
-                document.getElementById('modalSubmitBtn').style.display = "none";
-                document.getElementById('modalBody').innerHTML = `
-                    <p style="font-size:0.9rem; color:var(--text-main); line-height:1.5;">Explore Christine's live performance reels, check her Spotify vibes, or book a live date directly via WhatsApp.</p>
-                `;
-                modal.style.display = 'flex';
-            }, 350);
-        });
     </script>
 </body>
 </html>
