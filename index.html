@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christine Petts | Live Musician & Venue Booking Portal</title>
+    <title>CHRISTINE PETTS | Live Musician & Venue Booking Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -44,7 +44,7 @@
             position: relative;
         }
 
-        /* Hero Artist Header with Full-Width Banner Image adjusted to center head */
+        /* Hero Artist Header with Full-Width Banner Image adjusted to display head properly */
         .artist-header {
             text-align: center;
             margin-bottom: 1.25rem;
@@ -64,7 +64,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 25%; /* Pushes image down slightly to show head */
+            object-position: center 25%;
             filter: brightness(0.9);
             transition: transform 0.4s ease;
         }
@@ -77,19 +77,22 @@
             font-size: 2rem;
             font-weight: 700;
             color: #FFF;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.2rem;
-        }
-
-        .artist-subtitle {
-            font-size: 0.82rem;
-            color: #FDA4AF;
-            text-transform: uppercase;
             letter-spacing: 2px;
-            font-weight: 700;
+            text-transform: uppercase;
+            text-shadow: 0 2px 12px rgba(225, 29, 72, 0.5);
+            margin-bottom: 0.3rem;
         }
 
-        /* Main Action Buttons directly under Name Header */
+        .artist-description {
+            font-size: 0.82rem;
+            color: #CBD5E1;
+            line-height: 1.4;
+            max-width: 380px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        /* Main Action Buttons directly under Name & Description */
         .main-actions-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -269,16 +272,16 @@
 <body>
 
     <div class="widget-container">
-        <!-- Hero Artist Header: Full-Width Banner Photo adjusted to display head properly -->
+        <!-- Hero Artist Header: Full-Width Banner Photo, Caps Name & Sexy Short Description -->
         <div class="artist-header">
             <div class="artist-banner-wrapper">
                 <img src="profile.jpg" class="artist-banner-img" alt="Christine Petts">
             </div>
-            <h1>Christine Petts</h1>
-            <div class="artist-subtitle">Live Acoustic & Vocalist</div>
+            <h1>CHRISTINE PETTS</h1>
+            <p class="artist-description">Soulful vocals, magnetic acoustic mastery, and unforgettable live energy.</p>
         </div>
 
-        <!-- Main Action Buttons under Name Header -->
+        <!-- Main Action Buttons under Name & Description -->
         <div class="main-actions-grid">
             <button class="action-pill-btn primary" onclick="openModal('booking')">
                 🎤 Book for Gig
