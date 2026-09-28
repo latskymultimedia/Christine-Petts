@@ -4,660 +4,530 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christine Petts | Live Musician & Venue Booking Portal</title>
-    <!-- Preconnect for speed -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #090D16;
-            --bg-card: rgba(18, 24, 38, 0.85);
+            --bg-color: #0F172A;
+            --card-bg: rgba(30, 41, 59, 0.85);
             --accent: #D97706;
-            --accent-glow: rgba(217, 119, 6, 0.35);
+            --accent-hover: #B45309;
             --accent-green: #10B981;
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
-            --border: rgba(255, 255, 255, 0.1);
-            --gradient-gold: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.12);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)),
+                        url('profile.jpg') center/cover fixed;
             color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .text-gradient {
-            background: linear-gradient(135deg, #FFF 30%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.25rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Navigation */
-        nav {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--glass-border);
+            min-height: 100vh;
+            padding: 1.5rem 0.5rem;
         }
-        .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase; }
-        .logo span { color: var(--accent); }
-        .nav-cta {
-            background: var(--gradient-gold);
-            color: #FFF;
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.8rem;
-            box-shadow: 0 8px 20px -5px var(--accent-glow);
-            transition: transform 0.2s;
-        }
-        .nav-cta:hover { transform: translateY(-2px); }
 
-        /* Hero Section */
-        .hero { padding: 3rem 0 2rem; text-align: center; }
-        .hero-tag {
+        .widget-container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Hero Artist Banner */
+        .hero-banner {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+            padding: 2.5rem 1rem 1.5rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.95) 100%),
+                        url('profile.jpg') center/cover no-repeat;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-banner .badge {
             display: inline-block;
-            background: rgba(217, 119, 6, 0.15);
+            background: rgba(217, 119, 6, 0.3);
             border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 0.35rem 1rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
+            color: #FDBA74;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 1.25rem;
-        }
-        .hero h1 { font-size: 2.75rem; line-height: 1.15; margin-bottom: 1.25rem; }
-        .hero p { max-width: 680px; margin: 0 auto 2rem; font-size: 1rem; color: var(--text-muted); }
-
-        /* Hero Profile & Video Sizzle Reel */
-        .hero-media-container {
-            max-width: 900px;
-            margin: 0 auto 3rem;
-            display: grid;
-            grid-template-columns: 1fr 1.4fr;
-            gap: 1.5rem;
-            align-items: center;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            padding: 1.5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-        .hero-profile-img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            border-radius: 14px;
-            border: 1px solid var(--glass-border);
-        }
-        .hero-video-wrapper {
-            position: relative;
-            width: 100%;
-            height: 280px;
-            border-radius: 14px;
-            overflow: hidden;
-            background: #000;
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .video-placeholder-text {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            text-align: center;
-            padding: 1rem;
+            margin-bottom: 0.5rem;
+            backdrop-filter: blur(4px);
         }
 
-        /* 3 Core Pillars - Cards Grid */
-        .pillars-section { padding: 2rem 0 4rem; }
-        .section-header { text-align: center; margin-bottom: 2.5rem; }
-        .section-header h2 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .section-header p { color: var(--text-muted); font-size: 0.95rem; }
-
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+        .hero-banner h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFF;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+            letter-spacing: 0.5px;
         }
 
-        .pillar-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            cursor: pointer;
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-            position: relative;
-            overflow: hidden;
-            text-align: left;
-            width: 100%;
+        .guest-welcome-subtitle {
+            font-size: 0.95rem;
+            color: #FDBA74;
+            font-weight: 600;
+            margin-top: 0.3rem;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.8);
         }
 
-        .pillar-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--accent);
-            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.6);
+        .hero-banner p {
+            font-size: 0.8rem;
+            color: #E2E8F0;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.8);
+            margin-top: 0.2rem;
         }
 
-        .pillar-card h3 { font-size: 1.35rem; margin-bottom: 0.5rem; color: #FFF; }
-        .pillar-card p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem; line-height: 1.5; }
-
-        .pillar-mockup {
+        /* Promo Video Banner Container */
+        .video-container {
             width: 100%;
             height: 180px;
             border-radius: 14px;
             overflow: hidden;
+            margin-bottom: 1.25rem;
+            border: 1px solid var(--border);
+            background: #000;
             position: relative;
-            background: #0B0F19;
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-
-        .pillar-photo-bg {
+        .video-container iframe, .video-container video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.75);
-            transition: transform 0.4s;
+            border: none;
         }
-        .pillar-card:hover .pillar-photo-bg { transform: scale(1.06); }
 
-        .click-indicator {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 700;
+        /* Quick Inquiry Bar */
+        .checkin-bar {
+            background: rgba(217, 119, 6, 0.12);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 0.9rem;
+            margin-bottom: 1.25rem;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 4px;
-            margin-top: 0.5rem;
         }
 
-        /* Feature Deep Dive Sections */
-        .feature-deepdive {
-            padding: 4.5rem 0;
-            border-top: 1px solid var(--glass-border);
+        .checkin-info h4 { font-size: 0.9rem; color: #FDBA74; }
+        .checkin-info p { font-size: 0.75rem; color: var(--text-muted); }
+
+        .btn-checkin {
+            background: var(--gradient-gold, var(--accent));
+            color: #FFF;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-checkin:hover { opacity: 0.9; transform: scale(1.02); }
+
+        /* Navigation Tabs */
+        .tab-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 0.3rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
         }
 
-        .deepdive-grid {
+        .tab-btn {
+            flex: 1;
+            padding: 0.6rem 0.3rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: #FFF;
+        }
+
+        /* Tab Contents */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Buttons Grid */
+        .widget-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3.5rem;
-            align-items: center;
+            gap: 0.85rem;
         }
 
-        .deepdive-grid.reverse { direction: rtl; }
-        .deepdive-grid.reverse .deepdive-content { direction: ltr; }
-
-        .deepdive-content h2 { font-size: 2.1rem; line-height: 1.25; margin-bottom: 1rem; }
-        .deepdive-content p { color: var(--text-muted); font-size: 0.98rem; margin-bottom: 1.25rem; line-height: 1.6; }
-
-        .benefit-list { list-style: none; margin-bottom: 1.75rem; }
-        .benefit-list li {
-            position: relative;
-            padding-left: 1.6rem;
-            margin-bottom: 0.7rem;
-            font-size: 0.9rem;
-            color: var(--text-main);
-        }
-        .benefit-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent-green);
-            font-weight: 800;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            background: var(--gradient-gold);
-            color: #FFF;
-            padding: 0.85rem 1.75rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.88rem;
-            box-shadow: 0 8px 25px -5px var(--accent-glow);
-            transition: all 0.25s;
-            cursor: pointer;
-            border: none;
-        }
-        .btn-primary:hover { transform: translateY(-2px); }
-
-        .btn-secondary {
-            display: inline-block;
-            background: transparent;
-            color: #FFF;
-            border: 1px solid var(--accent);
-            padding: 0.85rem 1.75rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.88rem;
-            transition: all 0.25s;
-            cursor: pointer;
-        }
-        .btn-secondary:hover { 
-            background: rgba(217, 119, 6, 0.15);
-            transform: translateY(-2px); 
-        }
-
-        .cta-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .showcase-frame {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
+        .widget-btn {
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border);
-            background: var(--bg-card);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        }
-
-        .showcase-img {
-            width: 100%;
-            height: 340px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .stats-overlay-card {
-            position: absolute;
-            bottom: 15px;
-            left: 15px;
-            right: 15px;
-            background: rgba(15, 23, 42, 0.92);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
             border-radius: 14px;
             padding: 1rem;
-            display: flex;
-            justify-content: space-around;
+            color: var(--text-main);
+            cursor: pointer;
             text-align: center;
-        }
-        .stat-item h4 { font-size: 1.3rem; color: var(--accent-green); }
-        .stat-item p { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; }
-
-        /* Modal Popup Styles */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 8, 15, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            gap: 6px;
+        }
+
+        .widget-btn:hover {
+            background: rgba(217, 119, 6, 0.15);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .widget-btn.full-width { grid-column: span 2; }
+        .widget-btn.highlight { background: rgba(217, 119, 6, 0.2); border-color: var(--accent); }
+
+        /* List Cards */
+        .list-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.85rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .list-card:hover {
+            border-color: var(--accent);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .badge-promoted {
+            background: rgba(217, 119, 6, 0.25);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 0.65rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* Modal Overlay & Card */
+        .modal {
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(15, 23, 42, 0.65); 
+            backdrop-filter: blur(8px);
+            justify-content: center; 
+            align-items: center; 
+            z-index: 1000; 
             padding: 1rem;
         }
+
         .modal-content {
-            background: #111827;
-            border: 1px solid var(--accent);
-            border-radius: 20px;
-            max-width: 600px;
-            width: 100%;
-            padding: 2rem;
-            position: relative;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+            background: #1E293B; 
+            border: 1px solid var(--border);
+            border-radius: 20px; 
+            padding: 1.5rem; 
+            width: 100%; 
+            max-width: 420px;
             max-height: 90vh;
             overflow-y: auto;
-        }
-        .modal-close {
-            position: absolute;
-            top: 1.25rem; right: 1.25rem;
-            background: rgba(255,255,255,0.1);
-            border: none;
-            color: #FFF;
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-weight: 700;
-            display: flex; align-items: center; justify-content: center;
-            transition: background 0.2s;
-        }
-        .modal-close:hover { background: var(--accent); }
-        .modal-content h3 { font-size: 1.75rem; margin-bottom: 1rem; color: #FFF; }
-        .modal-content h4 { font-size: 1.1rem; color: var(--accent); margin: 1.2rem 0 0.4rem; }
-        .modal-content p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.8rem; line-height: 1.5; }
-        .modal-price-tag {
-            background: rgba(217, 119, 6, 0.15);
-            border: 1px solid var(--accent);
-            padding: 0.75rem 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            font-weight: 700;
-            color: #FFF;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
         }
 
-        footer {
-            border-top: 1px solid var(--glass-border);
-            padding: 2.5rem 0;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.8rem;
+        .modal-content input, .modal-content select, .modal-content textarea {
+            width: 100%; padding: 0.75rem; margin-top: 0.5rem; margin-bottom: 1rem;
+            border-radius: 8px; border: 1px solid var(--border); background: #0F172A;
+            color: #FFF; font-family: inherit;
         }
-        footer a { color: var(--accent); text-decoration: none; }
 
-        @media (max-width: 850px) {
-            .hero h1 { font-size: 2rem; }
-            .hero-media-container { grid-template-columns: 1fr; }
-            .deepdive-grid, .deepdive-grid.reverse { grid-template-columns: 1fr; gap: 2rem; direction: ltr; }
-            .showcase-img { height: 240px; }
-            .cta-group { flex-direction: column; align-items: stretch; }
-            .cta-group a, .cta-group button { text-align: center; }
+        .btn-submit {
+            width: 100%; padding: 0.8rem; background: var(--accent);
+            border: none; border-radius: 8px; color: #FFF; font-weight: 600; cursor: pointer;
         }
+
+        .social-link-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 0.8rem; margin-bottom: 0.6rem; border-radius: 10px;
+            text-decoration: none; font-weight: 600; color: #FFF; font-size: 0.85rem;
+        }
+
+        .footer-note { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 1.25rem; }
+        .footer-note a { color: var(--accent); text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Navigation -->
-        <nav>
-            <div class="logo">Christine <span>Petts</span></div>
-            <a href="https://wa.me/27828215975?text=Hi%20Christine,%20I'd%20like%20to%20book%20you%20for%20an%20upcoming%20gig%20at%20our%20venue." target="_blank" class="nav-cta">Book for Live Gig</a>
-        </nav>
+    <div class="widget-container">
+        <!-- Hero Artist Banner -->
+        <div class="hero-banner">
+            <span class="badge">Live Acoustic & Rock Act</span>
+            <h1>Christine Petts</h1>
+            <div class="guest-welcome-subtitle">Venue Booking & Performance Hub</div>
+            <p>Soulful vocals, acoustic mastery & crowd favorites.</p>
+        </div>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <span class="hero-tag">Live Acoustic & Rock Artist</span>
-            <h1>Captivating Acoustic Melodies & <br><span class="text-gradient">Unforgettable Live Performances</span></h1>
-            <p>Acoustic guitar mastery, soulful vocals, and crowd-pleasing classic covers & originals. Perfect for intimate venue sessions, festivals, and private corporate events.</p>
-        </section>
+        <!-- Promo Video Showcase -->
+        <div class="video-container">
+            <iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1" title="Christine Petts Live Sizzle Reel" allowfullscreen></iframe>
+        </div>
 
-        <!-- Hero Media Container: Profile Image + Live Promo Video Sizzle Reel -->
-        <div class="hero-media-container">
-            <img src="profile.jpg" class="hero-profile-img" alt="Christine Petts Live Performance">
-            <div class="hero-video-wrapper">
-                <div class="video-placeholder-text">🎵 <strong>Live Sizzle Reel / Promo Video</strong><br><span>(Embed your highlight reel or YouTube performance link here)</span></div>
+        <!-- Quick Inquiry Bar -->
+        <div class="checkin-bar">
+            <div class="checkin-info">
+                <h4>Book for Live Gigs</h4>
+                <p>Check available dates & set options</p>
+            </div>
+            <button class="btn-checkin" onclick="openModal('booking')">Enquire</button>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('quick-access', event)">Hub Menu</button>
+            <button class="tab-btn" onclick="switchTab('sets-tab', event)">Setlists</button>
+            <button class="tab-btn" onclick="switchTab('stats-tab', event)">Stats & Proof</button>
+        </div>
+
+        <!-- TAB 1: QUICK ACCESS HUB -->
+        <div class="tab-content active" id="quick-access">
+            <div class="widget-grid">
+                <button class="widget-btn highlight full-width" onclick="openModal('booking')">
+                    🎤 Request Venue Booking & Rider
+                </button>
+                <button class="widget-btn" onclick="openModal('streaming')">
+                    🎧 Streaming Links
+                </button>
+                <button class="widget-btn" onclick="openModal('videos')">
+                    🎬 Music Videos
+                </button>
+                <button class="widget-btn" onclick="openModal('about')">
+                    📖 About Artist
+                </button>
+                <button class="widget-btn" onclick="openModal('tech')">
+                    🎛 Tech Requirements
+                </button>
+                <button class="widget-btn highlight full-width" onclick="openModal('socials')">
+                    🌐 Social Media Channels
+                </button>
+                <button class="widget-btn full-width" style="background: rgba(16, 185, 129, 0.2); border-color: var(--accent-green);" onclick="openWhatsApp()">
+                    💬 Chat with Management (WhatsApp)
+                </button>
             </div>
         </div>
 
-        <!-- 3 Core Clickable Pillars Overview Grid -->
-        <section class="pillars-section">
-            <div class="section-header">
-                <h2>Booking & Performance Hub</h2>
-                <p>Tap any category below to view live setlists, streaming links, and booking requirements</p>
+        <!-- TAB 2: SETLISTS & REPERTOIRE -->
+        <div class="tab-content" id="sets-tab">
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem;">Explore curated live set categories:</p>
+            <div class="list-card" onclick="openModal('set1')">
+                <div>
+                    <strong>Acoustic Dinner & Wine Bar Vibe</strong> <span class="badge-promoted">Popular</span><br>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">Soft melodic covers, Rodriguez, folk classics</span>
+                </div>
+                <span style="color:var(--accent); font-weight:700;">→</span>
             </div>
-
-            <div class="pillars-grid">
-                
-                <!-- Pillar 1: Live Performances & Booking -->
-                <div class="pillar-card" onclick="openModal('bookingModal')">
-                    <div>
-                        <span style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase;">01 / Live Experience</span>
-                        <h3>Live Shows & Booking</h3>
-                        <p>Solo acoustic sets, soulful covers ("Sugar Man", "Comfortably Numb"), and original tracks tailored to create the ideal venue atmosphere.</p>
-                    </div>
-                    <div class="pillar-mockup">
-                        <img src="profile.jpg" class="pillar-photo-bg" loading="lazy" alt="Live Performances">
-                    </div>
-                    <div class="click-indicator">Tap to View Setlists & Tech Rider →</div>
+            <div class="list-card" onclick="openModal('set2')">
+                <div>
+                    <strong>Classic Rock & Sing-Alongs</strong><br>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">Pink Floyd, Eric Clapton, high-energy covers</span>
                 </div>
-
-                <!-- Pillar 2: Streaming & Music -->
-                <div class="pillar-card" onclick="openModal('streamingModal')">
-                    <div>
-                        <span style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase;">02 / Audio & Releases</span>
-                        <h3>Streaming & Music</h3>
-                        <p>Listen to latest releases including "Magic Mountain", acoustic recordings, and high-fidelity tracks available across major streaming platforms.</p>
-                    </div>
-                    <div class="pillar-mockup">
-                        <img src="profile.jpg" class="pillar-photo-bg" loading="lazy" alt="Streaming Music">
-                    </div>
-                    <div class="click-indicator">Tap to Stream Tracks & Releases →</div>
-                </div>
-
-                <!-- Pillar 3: Stats & Social Proof -->
-                <div class="pillar-card" onclick="openModal('statsModal')">
-                    <div>
-                        <span style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase;">03 / Track Record</span>
-                        <h3>Stats & Venue Proof</h3>
-                        <p>Proven track record of high audience retention, packed venue nights, active social media engagement, and professional live production quality.</p>
-                    </div>
-                    <div class="pillar-mockup">
-                        <img src="profile.jpg" class="pillar-photo-bg" loading="lazy" alt="Stats and Audience">
-                    </div>
-                    <div class="click-indicator">Tap to View Audience Reach & Stats →</div>
-                </div>
-
+                <span style="color:var(--accent); font-weight:700;">→</span>
             </div>
-        </section>
-
-        <!-- DEEP DIVE SECTION 1: LIVE SETLISTS & GENRES -->
-        <section class="feature-deepdive" id="live-section">
-            <div class="deepdive-grid">
-                <div class="deepdive-content">
-                    <span class="hero-tag">Tailored Setlists</span>
-                    <h2>A Versatile Acoustic Sound Experience</h2>
-                    <p>Whether you run an intimate wine bar, a lively restaurant terrace, or a festival stage, Christine adapts her performance to fit the vibe. Expect rich acoustic guitar work coupled with deeply engaging vocal delivery.</p>
-                    
-                    <ul class="benefit-list">
-                        <li><strong>Classic Covers & Sing-Alongs:</strong> Crowd favorites including acoustic renditions of Pink Floyd, Rodriguez, Eric Clapton, and more.</li>
-                        <li><strong>Original Releases:</strong> Fresh tracks like "Magic Mountain" and "Unspoken Words" that bring genuine artistic depth to the night.</li>
-                        <li><strong>Flexible Set Lengths:</strong> Adaptable sets ranging from relaxed 2-hour dinner ambience to high-energy 3-set evening performances.</li>
-                        <li><strong>Self-Contained Setup:</strong> Professional portable acoustic-electric gear and vocal monitoring ready for plug-and-play venue integration.</li>
-                    </ul>
-
-                    <div class="cta-group">
-                        <a href="https://wa.me/27828215975?text=Hi%20Christine,%20I'd%20like%20to%20check%20your%20date%20availability%20for%20a%20venue%20gig." target="_blank" class="btn-primary">Check Date Availability</a>
-                        <button onclick="openModal('bookingModal')" class="btn-secondary">View Setlists & Rider</button>
-                    </div>
+            <div class="list-card" onclick="openModal('set3')">
+                <div>
+                    <strong>Original Releases Showcase</strong> <span class="badge-promoted">New</span><br>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">"Magic Mountain", "Unspoken Words", acoustic originals</span>
                 </div>
+                <span style="color:var(--accent); font-weight:700;">→</span>
+            </div>
+        </div>
 
-                <div class="showcase-frame">
-                    <img src="profile.jpg" class="showcase-img" loading="lazy" alt="Christine Petts Live Performance">
-                    <div class="stats-overlay-card">
-                        <div class="stat-item">
-                            <h4>100%</h4>
-                            <p>Live Acoustic Vibe</p>
-                        </div>
-                        <div class="stat-item">
-                            <h4>3 Hours</h4>
-                            <p>Max Set Duration</p>
-                        </div>
-                    </div>
+        <!-- TAB 3: STATS & SOCIAL PROOF -->
+        <div class="tab-content" id="stats-tab">
+            <div class="list-card" style="cursor:default;">
+                <div>
+                    <strong>Live Performance Experience</strong><br>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">Venues, private functions & festivals</span>
+                </div>
+                <div style="text-align:right;">
+                    <strong>10+ Years</strong><br>
+                    <span style="font-size:0.75rem; color:var(--accent-green);">Pro Reliability</span>
                 </div>
             </div>
-        </section>
-
-        <!-- DEEP DIVE SECTION 2: STREAMING & MUSIC VIDEOS -->
-        <section class="feature-deepdive" id="streaming-section">
-            <div class="deepdive-grid reverse">
-                <div class="deepdive-content">
-                    <span class="hero-tag">Audio & Visuals</span>
-                    <h2>Stream Releases & Watch Music Videos</h2>
-                    <p>Get a direct window into Christine’s musical style before booking. Explore studio recordings, live performance clips, and official music releases designed to showcase her unique tone.</p>
-                    
-                    <ul class="benefit-list">
-                        <li><strong>Featured Release:</strong> "Magic Mountain" single rollout featuring rich harmonies and intricate acoustic arrangements.</li>
-                        <li><strong>Live Session Clips:</strong> High-definition behind-the-scenes and live-recorded covers including "Sugar Man" and "Comfortably Numb".</li>
-                        <li><strong>Easy Access:</strong> Direct links to streaming channels so venue managers and fans can listen instantly.</li>
-                    </ul>
-
-                    <div class="cta-group">
-                        <a href="https://wa.me/27828215975?text=Hi%20Christine,%20I%20checked%20out%20your%20music%20and%20want%20to%20discuss%20a%20booking." target="_blank" class="btn-primary">Enquire Now</a>
-                        <button onclick="openModal('streamingModal')" class="btn-secondary">View Streaming Links</button>
-                    </div>
+            <div class="list-card" style="cursor:default;">
+                <div>
+                    <strong>Audience Engagement</strong><br>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">Patron stay duration & bar spend</span>
                 </div>
-
-                <div class="showcase-frame">
-                    <img src="profile.jpg" class="showcase-img" loading="lazy" alt="Christine Petts Music & Videos">
-                    <div class="stats-overlay-card">
-                        <div class="stat-item">
-                            <h4>Top Hits</h4>
-                            <p>Originals & Covers</p>
-                        </div>
-                        <div class="stat-item">
-                            <h4>HD / 4K</h4>
-                            <p>Visual Production</p>
-                        </div>
-                    </div>
+                <div style="text-align:right;">
+                    <strong>High Retention</strong><br>
+                    <span style="font-size:0.75rem; color:var(--accent-green);">Packed Nights</span>
                 </div>
             </div>
-        </section>
-
-        <!-- DEEP DIVE SECTION 3: ABOUT & VENUE STATS -->
-        <section class="feature-deepdive" id="about-section">
-            <div class="deepdive-grid">
-                <div class="deepdive-content">
-                    <span class="hero-tag">Artist Background</span>
-                    <h2>About Christine & Venue Value</h2>
-                    <p>A seasoned performer with a passion for connecting directly with audiences. Booking Christine brings built-in promotional reach, reliable punctuality, and an exceptional standard of live entertainment that keeps patrons staying longer and spending more at your bar or restaurant.</p>
-
-                    <ul class="benefit-list">
-                        <li><strong>Built-In Social Promotion:</strong> Each booked gig is cross-promoted across her engaged social channels, driving followers directly to your venue.</li>
-                        <li><strong>Professional Reliability:</strong> Transparent communication, prompt soundchecks, and professional stage presence every time.</li>
-                        <li><strong>Audience Appeal:</strong> Appeals to a broad demographic of music lovers who appreciate authentic, high-quality acoustic performance.</li>
-                    </ul>
-
-                    <div class="cta-group">
-                        <a href="https://wa.me/27828215975?text=Hi%20Christine,%20let's%20discuss%20a%20venue%20booking." target="_blank" class="btn-primary">Book Christine Today</a>
-                        <button onclick="openModal('statsModal')" class="btn-secondary">View Artist Stats</button>
-                    </div>
+            <div class="list-card" style="cursor:default;">
+                <div>
+                    <strong>Built-In Cross Promo</strong><br>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">Active social media followers reach</span>
                 </div>
-
-                <div class="showcase-frame">
-                    <img src="profile.jpg" class="showcase-img" loading="lazy" alt="Christine Petts Artist Profile">
-                    <div class="stats-overlay-card">
-                        <div class="stat-item">
-                            <h4>10+</h4>
-                            <p>Years Experience</p>
-                        </div>
-                        <div class="stat-item">
-                            <h4>Pro</h4>
-                            <p>Stage Etiquette</p>
-                        </div>
-                    </div>
+                <div style="text-align:right;">
+                    <strong>Targeted Ads</strong><br>
+                    <span style="font-size:0.75rem; color:var(--accent-green);">Local Musos</span>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2026 Christine Petts Music. All Rights Reserved. | Managed by <a href="https://www.latskymultimedia.co.za" target="_blank">Latsky Multimedia</a></p>
-        </footer>
-    </div>
-
-    <!-- MODAL POPUPS -->
-
-    <!-- Modal 1: Booking & Setlists -->
-    <div class="modal-overlay" id="bookingModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('bookingModal')">&times;</button>
-            <h3>Live Shows & Venue Booking</h3>
-            
-            <h4>Performance Options & Setlists</h4>
-            <p>• <strong>Acoustic Dinner Sessions:</strong> Relaxed, melodic background or foreground sets featuring folk classics and soulful covers.<br>
-            • <strong>Feature Showcase Sets:</strong> High-engagement performances highlighting original songs like <em>"Magic Mountain"</em> alongside well-known crowd favorites like <em>"Sugar Man"</em> and <em>"Comfortably Numb"</em>.<br>
-            • <strong>Set Duration:</strong> Flexible structure (e.g., 2 x 45 min sets or 3 x 35 min sets with breaks).</p>
-            
-            <h4>Technical & Venue Requirements</h4>
-            <p>• Compact, professional acoustic-electric rig.<br>
-            • Minimal space required (suitable for corner stages, restaurant floors, or outdoor patios).<br>
-            • Standard power outlet access required.</p>
-
-            <div class="modal-price-tag">
-                Booking Inquiries:<br>
-                • Rates vary based on venue size, location, and set duration.<br>
-                • Includes cross-promotion on Christine's social media channels.
-            </div>
-            
-            <div style="margin-top: 1.5rem; text-align: center;">
-                <a href="https://wa.me/27828215975?text=Hi%20Christine,%20I'd%20like%20to%20book%20a%20live%20performance%20for%20our%20venue." target="_blank" class="btn-primary" style="display:inline-block;">Enquire via WhatsApp</a>
-            </div>
+        <div class="footer-note">
+            Managed by <a href="https://www.latskymultimedia.co.za" target="_blank" cite="topic-1">Latsky Multimedia</a>
         </div>
     </div>
 
-    <!-- Modal 2: Streaming & Music Videos -->
-    <div class="modal-overlay" id="streamingModal">
+    <!-- Generic Interactive Modal Overlay -->
+    <div class="modal" id="actionModal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('streamingModal')">&times;</button>
-            <h3>Streaming & Music Videos</h3>
-            
-            <h4>Featured Tracks & Releases</h4>
-            <p>• <strong>"Magic Mountain":</strong> Atmospheric single release with rich vocal harmonies.<br>
-            • <strong>Acoustic Covers:</strong> Fan favorites including <em>"Comfortably Numb"</em>, <em>"Before You Accuse Me"</em>, <em>"Unspoken Words"</em>, and <em>"Sugar Man"</em>.</p>
-            
-            <h4>Where to Listen & Watch</h4>
-            <p>Stream official releases and live session clips directly or request specific preview tracks for your venue's playlist atmosphere.</p>
-
-            <div class="modal-price-tag">
-                Platforms:<br>
-                • YouTube, Facebook Reels, TikTok & Local Audio Streaming
-            </div>
-
-            <div style="margin-top: 1.5rem; text-align: center;">
-                <a href="https://wa.me/27828215975?text=Hi%20Christine,%20please%20send%20me%20your%20streaming%20links." target="_blank" class="btn-primary" style="display:inline-block;">Request Audio Links</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 3: Stats & Social Proof -->
-    <div class="modal-overlay" id="statsModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('statsModal')">&times;</button>
-            <h3>Stats & Audience Reach</h3>
-            
-            <h4>Artist Performance Metrics</h4>
-            <p>• <strong>Audience Engagement:</strong> High retention rates during live sets, keeping patrons seated and ordering longer.<br>
-            • <strong>Digital Reach:</strong> Active social media presence with regular video performance clips reaching local music enthusiasts.<br>
-            • <strong>Reliability:</strong> 100% professional punctuality and seamless venue coordination.</p>
-            
-            <h4>Why Venues Book Christine</h4>
-            <p>• Draws loyal patrons and music lovers.<br>
-            • Enhances venue atmosphere with high-end acoustic sound.<br>
-            • Built-in marketing exposure through targeted social media promo.</p>
-
-            <div style="margin-top: 1.5rem; text-align: center;">
-                <a href="https://wa.me/27828215975?text=Hi%20Christine,%20let's%20discuss%20bringing%20your%20live%20set%20to%20our%20venue." target="_blank" class="btn-primary" style="display:inline-block;">Secure Venue Date</a>
-            </div>
+            <h3 id="modalTitle" style="margin-bottom:1rem;">Booking Details</h3>
+            <div id="modalBody"></div>
+            <button class="btn-submit" id="modalSubmitBtn" onclick="submitBookingRequest()">Send Inquiry via WhatsApp</button>
+            <button style="background:transparent; border:none; color:var(--text-muted); width:100%; margin-top:0.6rem; cursor:pointer;" onclick="closeModal()">Close</button>
         </div>
     </div>
 
     <script>
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
-        }
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal-overlay')) {
-                event.target.style.display = "none";
+        const HOST_PHONE = "27828215975";
+        let currentModalType = "";
+
+        function switchTab(tabId, evt) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            if (evt && evt.target) {
+                evt.target.classList.add('active');
             }
         }
+
+        function openWhatsApp() {
+            const msg = `Hi Christine / Management, I would like to chat about booking or collaborating.`;
+            window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(msg)}`, "_blank");
+        }
+
+        function openModal(type) {
+            currentModalType = type;
+            const modal = document.getElementById('actionModal');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
+            const submitBtn = document.getElementById('modalSubmitBtn');
+            submitBtn.style.display = "block";
+
+            if(type === 'booking') {
+                title.innerText = "Venue Booking Inquiry";
+                body.innerHTML = `
+                    <label style="font-size:0.8rem; color:var(--text-muted);">Your Venue / Organization Name:</label>
+                    <input type="text" id="bookVenue" placeholder="e.g. Camps Bay Lounge">
+                    <label style="font-size:0.8rem; color:var(--text-muted);">Proposed Date & Time:</label>
+                    <input type="text" id="bookDate" placeholder="e.g. Friday evening, next month">
+                    <label style="font-size:0.8rem; color:var(--text-muted);">Additional Notes:</label>
+                    <textarea id="bookNotes" rows="2" placeholder="Set duration, indoor/outdoor..."></textarea>
+                `;
+            } else if(type === 'streaming') {
+                title.innerText = "Streaming & Audio Platforms";
+                body.innerHTML = `
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Listen to latest releases and studio/live recordings:</p>
+                    <a href="https://www.youtube.com/@JohannLatsky" target="_blank" class="social-link-btn" style="background:#FF0000;">YouTube Music / Videos</a>
+                    <a href="https://www.facebook.com/LatskyMultimediagroup/" target="_blank" class="social-link-btn" style="background:#1877F2;">Facebook Live Sessions</a>
+                `;
+                submitBtn.style.display = "none";
+            } else if(type === 'videos') {
+                title.innerText = "Music Videos & Visuals";
+                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted);">Explore official music videos and live session recordings including "Magic Mountain", "Sugar Man", and "Comfortably Numb".</p>`;
+                submitBtn.style.display = "none";
+            } else if(type === 'about') {
+                title.innerText = "About Christine Petts";
+                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">Christine Petts is a seasoned live musician delivering powerful acoustic performances. Blending timeless classic rock covers with poignant original songs, she creates an unforgettable atmosphere for patrons.</p>`;
+                submitBtn.style.display = "none";
+            } else if(type === 'tech') {
+                title.innerText = "Technical Requirements";
+                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">• Compact acoustic-electric setup.<br>• Minimal stage footprint (fits easily in restaurant corners or patios).<br>• Standard power outlet required.</p>`;
+                submitBtn.style.display = "none";
+            } else if(type === 'socials') {
+                title.innerText = "Social Media Channels";
+                body.innerHTML = `
+                    <a href="https://www.facebook.com/LatskyMultimediagroup/" target="_blank" class="social-link-btn" style="background:#1877F2;">Facebook Profile</a>
+                    <a href="https://www.instagram.com/johannlatskyreal/" target="_blank" class="social-link-btn" style="background:#E4405F;">Instagram Reel Clips</a>
+                    <a href="https://www.youtube.com/@JohannLatsky" target="_blank" class="social-link-btn" style="background:#FF0000;">YouTube Channel</a>
+                `;
+                submitBtn.style.display = "none";
+            } else if(type === 'set1') {
+                title.innerText = "Acoustic Dinner & Wine Bar Set";
+                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); line-height:1.4;">Relaxed foreground and background acoustic melodies. Features soulful folk interpretations of Rodriguez ("Sugar Man"), acoustic blues, and mellow originals.</p>`;
+                submitBtn.style.display = "none";
+            } else if(type === 'set2') {
+                title.innerText = "Classic Rock & Sing-Alongs";
+                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); line-height:1.4;">High-energy crowd favorites including acoustic renditions of Pink Floyd ("Comfortably Numb"), Eric Clapton, and timeless rock anthems.</p>`;
+                submitBtn.style.display = "none";
+            } else if(type === 'set3') {
+                title.innerText = "Original Releases Showcase";
+                body.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); line-height:1.4;">Featuring fresh single releases like "Magic Mountain" and "Unspoken Words", bringing deep artistic engagement to your stage.</p>`;
+                submitBtn.style.display = "none";
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('actionModal').style.display = 'none'; }
+        
+        function submitBookingRequest() {
+            const venue = document.getElementById('bookVenue').value || "Not specified";
+            const date = document.getElementById('bookDate').value || "Not specified";
+            const notes = document.getElementById('bookNotes').value || "None";
+
+            const message = `*Venue Booking Inquiry*\nVenue: ${venue}\nDate/Time: ${date}\nNotes: ${notes}`;
+            window.open(`https://wa.me/${HOST_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
+            closeModal();
+        }
+
+        // Welcome Popup on load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const modal = document.getElementById('actionModal');
+                document.getElementById('modalTitle').innerText = "👋 Welcome to Christine Petts' Portal!";
+                document.getElementById('modalSubmitBtn').style.display = "none";
+                document.getElementById('modalBody').innerHTML = `
+                    <p style="font-size:0.9rem; color:var(--text-main); line-height:1.5;">Welcome venue managers and music lovers! Explore Christine's live setlists, watch promo videos, or request a booking date instantly via WhatsApp.</p>
+                `;
+                modal.style.display = 'flex';
+            }, 300);
+        });
     </script>
 </body>
 </html>
