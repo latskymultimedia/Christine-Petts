@@ -44,7 +44,7 @@
             position: relative;
         }
 
-        /* Hero Artist Header with Full-Width Banner Image */
+        /* Hero Artist Header with Full-Width Banner Image adjusted to center head */
         .artist-header {
             text-align: center;
             margin-bottom: 1.25rem;
@@ -64,6 +64,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 25%; /* Pushes image down slightly to show head */
             filter: brightness(0.9);
             transition: transform 0.4s ease;
         }
@@ -268,7 +269,7 @@
 <body>
 
     <div class="widget-container">
-        <!-- Hero Artist Header: Full-Width Banner Photo, Name, Subtitle -->
+        <!-- Hero Artist Header: Full-Width Banner Photo adjusted to display head properly -->
         <div class="artist-header">
             <div class="artist-banner-wrapper">
                 <img src="profile.jpg" class="artist-banner-img" alt="Christine Petts">
@@ -312,7 +313,7 @@
                 </div>
             </div>
 
-            <!-- Music Videos Card (Replaced Venue Stats) -->
+            <!-- Music Videos Card -->
             <div class="grid-card videos-card" onclick="openModal('videos')">
                 <div>
                     <div class="card-icon">🎬</div>
@@ -332,7 +333,7 @@
         </div>
 
         <div class="footer-note">
-            Managed by <a href="https://www.latskymultimedia.co.za" target="_blank" cite="topic-1">Latsky Multimedia</a>
+            Managed by <a href="https://www.latskymultimedia.co.za" target="_blank">Latsky Multimedia</a>
         </div>
     </div>
 
