@@ -74,21 +74,23 @@
 
         .artist-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 1.85rem;
             font-weight: 700;
             color: #FFF;
             letter-spacing: 2px;
             text-transform: uppercase;
             text-shadow: 0 2px 12px rgba(225, 29, 72, 0.5);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.25rem;
         }
 
         .artist-description {
-            font-size: 0.82rem;
+            font-size: 0.73rem;
             color: #CBD5E1;
-            line-height: 1.4;
-            max-width: 380px;
-            margin: 0 auto 0.85rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            margin: 0 auto 0.75rem;
             font-style: italic;
         }
 
@@ -303,13 +305,13 @@
 <body>
 
     <div class="widget-container">
-        <!-- Hero Artist Header: Banner, Caps Name, Sexy Description & Social Icons -->
+        <!-- Hero Artist Header: Banner, Caps Name, Single-Line Fit Description & Social Icons -->
         <div class="artist-header">
             <div class="artist-banner-wrapper">
                 <img src="profile.jpg" class="artist-banner-img" alt="Christine Petts">
             </div>
             <h1>CHRISTINE PETTS</h1>
-            <p class="artist-description">Soulful vocals, magnetic acoustic mastery, and unforgettable live energy.</p>
+            <p class="artist-description">Soulful vocals, magnetic acoustic mastery & unforgettable live energy.</p>
             
             <!-- Social Media Icons Bar -->
             <div class="social-icons-bar">
