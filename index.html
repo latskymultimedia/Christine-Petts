@@ -235,9 +235,9 @@
             box-shadow: 0 12px 30px var(--accent-glow);
         }
 
-        /* About Card Styled with image2.jpg Background */
+        /* About Card Styled with image2.jpg Background using object-fit / contain style presentation via gradients/background-size */
         .grid-card.about-card {
-            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('image2.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.85)), url('image2.jpg') center/cover no-repeat;
             border-color: rgba(255, 255, 255, 0.2);
         }
         .grid-card.about-card:hover {
@@ -460,8 +460,8 @@
             } else if(type === 'about') {
                 title.innerText = "About Christine Petts";
                 body.innerHTML = `
-                    <div style="text-align: center; margin-bottom: 1rem;">
-                        <img src="image2.jpg" alt="Christine Petts" style="width: 100%; height: 140px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border);">
+                    <div style="text-align: center; margin-bottom: 1rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #000;">
+                        <img src="image2.jpg" alt="Christine Petts" style="width: 100%; height: auto; display: block; object-fit: contain;">
                     </div>
                     <p style="font-size: 0.88rem; color: #F1F5F9; line-height: 1.6; font-style: italic; font-family: 'Playfair Display', serif;">
                         The Australian born singer, songwriter, guitarist and recording artist has spent her entire life in the music industry and has a wealth of musical knowledge and industry experience. Inspired by her father, a well-known country singer and guitarist, her career in music just fell into place and she has performed for audiences around the world.<br><br>
