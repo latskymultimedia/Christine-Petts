@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHRISTINE PETTS | Live Musician & Venue Booking Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #080C14;
@@ -235,6 +235,16 @@
             box-shadow: 0 12px 30px var(--accent-glow);
         }
 
+        /* About Card Styled with image2.jpg Background */
+        .grid-card.about-card {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('image2.jpg') center/cover no-repeat;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .grid-card.about-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 12px 30px var(--accent-glow);
+        }
+
         .card-icon {
             font-size: 1.4rem;
             margin-bottom: 0.5rem;
@@ -258,7 +268,7 @@
             display: none; 
             position: fixed; 
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(8, 12, 20, 0.8); 
+            background: rgba(8, 12, 20, 0.85); 
             backdrop-filter: blur(10px);
             justify-content: center; 
             align-items: center; 
@@ -332,7 +342,7 @@
             </button>
         </div>
 
-        <!-- Updated Video Preview Showcase -->
+        <!-- Video Preview Showcase -->
         <div class="video-showcase">
             <iframe src="https://www.youtube-nocookie.com/embed/g_nx2wfyqn0?autoplay=0&mute=1" title="Christine Petts Live Performance" allowfullscreen></iframe>
         </div>
@@ -366,8 +376,8 @@
                 </div>
             </div>
 
-            <!-- About Section Card -->
-            <div class="grid-card" onclick="openModal('about')">
+            <!-- About Section Card with image2.jpg Background -->
+            <div class="grid-card about-card" onclick="openModal('about')">
                 <div>
                     <div class="card-icon">✨</div>
                     <h3>About Artist</h3>
@@ -450,8 +460,12 @@
             } else if(type === 'about') {
                 title.innerText = "About Christine Petts";
                 body.innerHTML = `
-                    <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">
-                    Christine Petts is a seasoned West Coast-based live musician known for her soulful voice and masterful acoustic delivery. Whether headlining a festival or providing intimate wine bar melodies, she brings magnetic stage presence and professionalism.
+                    <div style="text-align: center; margin-bottom: 1rem;">
+                        <img src="image2.jpg" alt="Christine Petts" style="width: 100%; height: 140px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border);">
+                    </div>
+                    <p style="font-size: 0.88rem; color: #F1F5F9; line-height: 1.6; font-style: italic; font-family: 'Playfair Display', serif;">
+                        The Australian born singer, songwriter, guitarist and recording artist has spent her entire life in the music industry and has a wealth of musical knowledge and industry experience. Inspired by her father, a well-known country singer and guitarist, her career in music just fell into place and she has performed for audiences around the world.<br><br>
+                        Christine boasts an impressive range of musical capabilities and has received significant attention for her rhythm guitar work. However, it is her voice that is most celebrated. Her talents also extend to song writing and, much like her performing ability, her songs are cohesively diverse in genre.
                     </p>
                 `;
                 submitBtn.style.display = "none";
